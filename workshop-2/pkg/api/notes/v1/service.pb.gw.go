@@ -288,7 +288,7 @@ func RegisterNotesHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.Notes/SaveNote", runtime.WithHTTPPathPattern("/v1/note"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.Notes/SaveNote", runtime.WithHTTPPathPattern("/v1/note"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -313,7 +313,7 @@ func RegisterNotesHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.Notes/ListNotes", runtime.WithHTTPPathPattern("/v1/notes"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.Notes/ListNotes", runtime.WithHTTPPathPattern("/v1/notes"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -338,7 +338,7 @@ func RegisterNotesHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.Notes/GetNoteByID", runtime.WithHTTPPathPattern("/v1/notes/{note_id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.Notes/GetNoteByID", runtime.WithHTTPPathPattern("/v1/notes/{note_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -363,7 +363,7 @@ func RegisterNotesHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.Notes/DeleteNoteByID", runtime.WithHTTPPathPattern("/v1/notes/{note_id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.Notes/DeleteNoteByID", runtime.WithHTTPPathPattern("/v1/notes/{note_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -388,7 +388,7 @@ func RegisterNotesHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.Notes/UpdateNoteByID", runtime.WithHTTPPathPattern("/v1/notes/{note_id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.Notes/UpdateNoteByID", runtime.WithHTTPPathPattern("/v1/notes/{note_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -452,7 +452,7 @@ func RegisterNotesHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.Notes/SaveNote", runtime.WithHTTPPathPattern("/v1/note"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.Notes/SaveNote", runtime.WithHTTPPathPattern("/v1/note"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -474,7 +474,7 @@ func RegisterNotesHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.Notes/ListNotes", runtime.WithHTTPPathPattern("/v1/notes"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.Notes/ListNotes", runtime.WithHTTPPathPattern("/v1/notes"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -496,7 +496,7 @@ func RegisterNotesHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.Notes/GetNoteByID", runtime.WithHTTPPathPattern("/v1/notes/{note_id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.Notes/GetNoteByID", runtime.WithHTTPPathPattern("/v1/notes/{note_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -518,7 +518,7 @@ func RegisterNotesHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.Notes/DeleteNoteByID", runtime.WithHTTPPathPattern("/v1/notes/{note_id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.Notes/DeleteNoteByID", runtime.WithHTTPPathPattern("/v1/notes/{note_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -540,7 +540,7 @@ func RegisterNotesHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.Notes/UpdateNoteByID", runtime.WithHTTPPathPattern("/v1/notes/{note_id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.Notes/UpdateNoteByID", runtime.WithHTTPPathPattern("/v1/notes/{note_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return

@@ -742,34 +742,34 @@ func file_api_notes_v1_service_proto_rawDescGZIP() []byte {
 
 var file_api_notes_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_api_notes_v1_service_proto_goTypes = []interface{}{
-	(*UpdateNoteByIDResponse)(nil), // 0: gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.UpdateNoteByIDResponse
-	(*UpdateNoteByIDRequest)(nil),  // 1: gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.UpdateNoteByIDRequest
-	(*DeleteNoteByIDRequest)(nil),  // 2: gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.DeleteNoteByIDRequest
-	(*DeleteNoteByIDResponse)(nil), // 3: gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.DeleteNoteByIDResponse
-	(*GetNoteByIDRequest)(nil),     // 4: gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.GetNoteByIDRequest
-	(*GetNoteByIDResponse)(nil),    // 5: gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.GetNoteByIDResponse
-	(*NoteInfo)(nil),               // 6: gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.NoteInfo
-	(*Note)(nil),                   // 7: gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.Note
-	(*SaveNoteRequest)(nil),        // 8: gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.SaveNoteRequest
-	(*SaveNoteResponse)(nil),       // 9: gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.SaveNoteResponse
-	(*ListNotesResponse)(nil),      // 10: gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.ListNotesResponse
+	(*UpdateNoteByIDResponse)(nil), // 0: github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.UpdateNoteByIDResponse
+	(*UpdateNoteByIDRequest)(nil),  // 1: github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.UpdateNoteByIDRequest
+	(*DeleteNoteByIDRequest)(nil),  // 2: github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.DeleteNoteByIDRequest
+	(*DeleteNoteByIDResponse)(nil), // 3: github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.DeleteNoteByIDResponse
+	(*GetNoteByIDRequest)(nil),     // 4: github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.GetNoteByIDRequest
+	(*GetNoteByIDResponse)(nil),    // 5: github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.GetNoteByIDResponse
+	(*NoteInfo)(nil),               // 6: github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.NoteInfo
+	(*Note)(nil),                   // 7: github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.Note
+	(*SaveNoteRequest)(nil),        // 8: github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.SaveNoteRequest
+	(*SaveNoteResponse)(nil),       // 9: github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.SaveNoteResponse
+	(*ListNotesResponse)(nil),      // 10: github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.ListNotesResponse
 	(*emptypb.Empty)(nil),          // 11: google.protobuf.Empty
 }
 var file_api_notes_v1_service_proto_depIdxs = []int32{
-	6,  // 0: gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.UpdateNoteByIDRequest.info:type_name -> gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.NoteInfo
-	6,  // 1: gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.Note.info:type_name -> gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.NoteInfo
-	6,  // 2: gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.SaveNoteRequest.info:type_name -> gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.NoteInfo
-	7,  // 3: gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.ListNotesResponse.notes:type_name -> gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.Note
-	8,  // 4: gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.Notes.SaveNote:input_type -> gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.SaveNoteRequest
-	11, // 5: gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.Notes.ListNotes:input_type -> google.protobuf.Empty
-	4,  // 6: gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.Notes.GetNoteByID:input_type -> gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.GetNoteByIDRequest
-	2,  // 7: gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.Notes.DeleteNoteByID:input_type -> gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.DeleteNoteByIDRequest
-	1,  // 8: gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.Notes.UpdateNoteByID:input_type -> gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.UpdateNoteByIDRequest
-	9,  // 9: gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.Notes.SaveNote:output_type -> gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.SaveNoteResponse
-	10, // 10: gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.Notes.ListNotes:output_type -> gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.ListNotesResponse
-	5,  // 11: gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.Notes.GetNoteByID:output_type -> gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.GetNoteByIDResponse
-	3,  // 12: gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.Notes.DeleteNoteByID:output_type -> gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.DeleteNoteByIDResponse
-	0,  // 13: gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.Notes.UpdateNoteByID:output_type -> gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.UpdateNoteByIDResponse
+	6,  // 0: github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.UpdateNoteByIDRequest.info:type_name -> github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.NoteInfo
+	6,  // 1: github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.Note.info:type_name -> github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.NoteInfo
+	6,  // 2: github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.SaveNoteRequest.info:type_name -> github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.NoteInfo
+	7,  // 3: github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.ListNotesResponse.notes:type_name -> github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.Note
+	8,  // 4: github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.Notes.SaveNote:input_type -> github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.SaveNoteRequest
+	11, // 5: github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.Notes.ListNotes:input_type -> google.protobuf.Empty
+	4,  // 6: github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.Notes.GetNoteByID:input_type -> github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.GetNoteByIDRequest
+	2,  // 7: github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.Notes.DeleteNoteByID:input_type -> github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.DeleteNoteByIDRequest
+	1,  // 8: github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.Notes.UpdateNoteByID:input_type -> github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.UpdateNoteByIDRequest
+	9,  // 9: github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.Notes.SaveNote:output_type -> github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.SaveNoteResponse
+	10, // 10: github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.Notes.ListNotes:output_type -> github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.ListNotesResponse
+	5,  // 11: github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.Notes.GetNoteByID:output_type -> github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.GetNoteByIDResponse
+	3,  // 12: github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.Notes.DeleteNoteByID:output_type -> github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.DeleteNoteByIDResponse
+	0,  // 13: github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.Notes.UpdateNoteByID:output_type -> github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.UpdateNoteByIDResponse
 	9,  // [9:14] is the sub-list for method output_type
 	4,  // [4:9] is the sub-list for method input_type
 	4,  // [4:4] is the sub-list for extension type_name

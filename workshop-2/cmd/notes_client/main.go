@@ -7,9 +7,9 @@ import (
 	"time"
 
 	"github.com/brianvoe/gofakeit/v6"
-	"gitlab.ozon.dev/go/classroom-8/students/workshop-2/internal/client/notes"
-	"gitlab.ozon.dev/go/classroom-8/students/workshop-2/internal/model"
-	desc "gitlab.ozon.dev/go/classroom-8/students/workshop-2/pkg/api/notes/v1"
+	"github.com/GO-route256/classroom-8/students/workshop-2/internal/client/notes"
+	"github.com/GO-route256/classroom-8/students/workshop-2/internal/model"
+	desc "github.com/GO-route256/classroom-8/students/workshop-2/pkg/api/notes/v1"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )

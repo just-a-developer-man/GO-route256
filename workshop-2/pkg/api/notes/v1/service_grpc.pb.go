@@ -20,11 +20,11 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Notes_SaveNote_FullMethodName       = "/gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.Notes/SaveNote"
-	Notes_ListNotes_FullMethodName      = "/gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.Notes/ListNotes"
-	Notes_GetNoteByID_FullMethodName    = "/gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.Notes/GetNoteByID"
-	Notes_DeleteNoteByID_FullMethodName = "/gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.Notes/DeleteNoteByID"
-	Notes_UpdateNoteByID_FullMethodName = "/gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.Notes/UpdateNoteByID"
+	Notes_SaveNote_FullMethodName       = "/github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.Notes/SaveNote"
+	Notes_ListNotes_FullMethodName      = "/github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.Notes/ListNotes"
+	Notes_GetNoteByID_FullMethodName    = "/github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.Notes/GetNoteByID"
+	Notes_DeleteNoteByID_FullMethodName = "/github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.Notes/DeleteNoteByID"
+	Notes_UpdateNoteByID_FullMethodName = "/github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.Notes/UpdateNoteByID"
 )
 
 // NotesClient is the client API for Notes service.
@@ -229,7 +229,7 @@ func _Notes_UpdateNoteByID_Handler(srv interface{}, ctx context.Context, dec fun
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Notes_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "gitlab.ozon.dev.go.classroom_8.students.workshop_2.pkg.notes.v1.Notes",
+	ServiceName: "github.com.GO-route256.classroom_8.students.workshop_2.pkg.notes.v1.Notes",
 	HandlerType: (*NotesServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

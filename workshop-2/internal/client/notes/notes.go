@@ -3,9 +3,9 @@ package notes
 import (
 	"context"
 
-	"gitlab.ozon.dev/go/classroom-8/students/workshop-2/internal/converter/client"
-	"gitlab.ozon.dev/go/classroom-8/students/workshop-2/internal/model"
-	notes_v1 "gitlab.ozon.dev/go/classroom-8/students/workshop-2/pkg/api/notes/v1"
+	"github.com/GO-route256/classroom-8/students/workshop-2/internal/converter/client"
+	"github.com/GO-route256/classroom-8/students/workshop-2/internal/model"
+	notes_v1 "github.com/GO-route256/classroom-8/students/workshop-2/pkg/api/notes/v1"
 	"google.golang.org/protobuf/types/known/emptypb"
 )
 

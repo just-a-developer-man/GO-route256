@@ -3,9 +3,9 @@ package notes
 import (
 	"context"
 
-	"gitlab.ozon.dev/go/classroom-8/students/workshop-2/internal/converter/server"
-	"gitlab.ozon.dev/go/classroom-8/students/workshop-2/internal/service/notes"
-	servicepb "gitlab.ozon.dev/go/classroom-8/students/workshop-2/pkg/api/notes/v1"
+	"github.com/GO-route256/classroom-8/students/workshop-2/internal/converter/server"
+	"github.com/GO-route256/classroom-8/students/workshop-2/internal/service/notes"
+	servicepb "github.com/GO-route256/classroom-8/students/workshop-2/pkg/api/notes/v1"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/emptypb"

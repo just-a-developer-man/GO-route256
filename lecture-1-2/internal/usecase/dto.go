@@ -1,7 +1,7 @@
 package usecase
 
 import (
-	"gitlab.ozon.dev/go/classroom-8/students/lecture-1-2/internal/models"
+	"github.com/GO-route256/classroom-8/students/lecture-1-2/internal/models"
 )
 
 // CreateOrderInputInfo - DTO заказа (для создания заказа)

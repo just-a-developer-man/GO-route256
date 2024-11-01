@@ -5,11 +5,11 @@ import (
 	"net/http"
 	"os"
 
-	controller_http "gitlab.ozon.dev/go/classroom-8/students/lecture-1-2/internal/controller/http"
-	repository "gitlab.ozon.dev/go/classroom-8/students/lecture-1-2/internal/repository/postgres"
-	wms "gitlab.ozon.dev/go/classroom-8/students/lecture-1-2/internal/services/WMS"
-	oms "gitlab.ozon.dev/go/classroom-8/students/lecture-1-2/internal/usecase/OMS"
-	"gitlab.ozon.dev/go/classroom-8/students/lecture-1-2/pkg/middleware"
+	controller_http "github.com/GO-route256/classroom-8/students/lecture-1-2/internal/controller/http"
+	repository "github.com/GO-route256/classroom-8/students/lecture-1-2/internal/repository/postgres"
+	wms "github.com/GO-route256/classroom-8/students/lecture-1-2/internal/services/WMS"
+	oms "github.com/GO-route256/classroom-8/students/lecture-1-2/internal/usecase/OMS"
+	"github.com/GO-route256/classroom-8/students/lecture-1-2/pkg/middleware"
 )
 
 func main() {

@@ -4,8 +4,8 @@ import (
 	"context"
 
 	"github.com/google/uuid"
-	"gitlab.ozon.dev/go/classroom-8/students/lecture-1-2/internal/models"
-	"gitlab.ozon.dev/go/classroom-8/students/lecture-1-2/internal/usecase"
+	"github.com/GO-route256/classroom-8/students/lecture-1-2/internal/models"
+	"github.com/GO-route256/classroom-8/students/lecture-1-2/internal/usecase"
 )
 
 // Объявляем интерфейсы зависимостей в месте использования!

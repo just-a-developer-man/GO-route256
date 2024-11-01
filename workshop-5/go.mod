@@ -1,6 +1,6 @@
 module route256/ws5
 
-go 1.19
+go 1.23
 
 require (
 	github.com/brianvoe/gofakeit/v6 v6.15.0
