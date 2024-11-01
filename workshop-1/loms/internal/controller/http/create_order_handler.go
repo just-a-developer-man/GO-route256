@@ -10,6 +10,8 @@ import (
 	"github.com/just-a-developer-man/GO-route256/workshop-1/loms/internal/usecase"
 )
 
+type validateFunc func(*CreateOrderRequest) error
+
 type ItemInfo struct {
 	SKU   uint32 `json:"sku"`
 	Count uint16 `json:"count"`
@@ -40,7 +42,7 @@ func (c *Controller) CreateOrderHandler(w http.ResponseWriter, r *http.Request) 
 	}
 
 	// 1. Validation
-	if err := validateCreateOrderRequest(&req); err != nil {
+	if err := validateCreateOrderRequest(&req, validateUserID, validateItems); err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
@@ -68,19 +70,18 @@ func (c *Controller) CreateOrderHandler(w http.ResponseWriter, r *http.Request) 
 	w.WriteHeader(http.StatusCreated)
 }
 
-func validateCreateOrderRequest(req *CreateOrderRequest) error {
-	if err := validateUserID(req.UserID); err != nil {
-		return fmt.Errorf("validateUserID: %w", err)
-	}
-
-	if err := validateItems(req.Items); err != nil {
-		return fmt.Errorf("validateItems: %w", err)
+func validateCreateOrderRequest(req *CreateOrderRequest, funcs ...validateFunc) error {
+	for _, f := range funcs {
+		if err := f(req); err != nil {
+			return fmt.Errorf("%v: %w", f, err)
+		}
 	}
 
 	return nil
 }
 
-func validateItems(items []ItemInfo) error {
+func validateItems(req *CreateOrderRequest) error {
+	items := req.Items
 	if len(items) <= 0 {
 		return errors.New("no items in order")
 	}
@@ -94,7 +95,8 @@ func validateItems(items []ItemInfo) error {
 	return nil
 }
 
-func validateUserID(userID int64) error {
+func validateUserID(req *CreateOrderRequest) error {
+	userID := req.UserID
 	if userID <= 0 {
 		return fmt.Errorf("invalid userID: %d", userID)
 	}
