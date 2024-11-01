@@ -2,27 +2,26 @@ package controller_http
 
 import (
 	"encoding/json"
+	"errors"
+	"fmt"
 	"net/http"
-	"time"
 
 	"github.com/just-a-developer-man/GO-route256/workshop-1/loms/internal/models"
 	"github.com/just-a-developer-man/GO-route256/workshop-1/loms/internal/usecase"
 )
 
+type ItemInfo struct {
+	SKU   uint32 `json:"sku"`
+	Count uint16 `json:"count"`
+}
+
 type CreateOrderRequest struct {
-	UserID int64 `json:"user_id"` // ID пользователя
-	Items  []struct {
-		ID          int64  `json:"id"`           // ID товара
-		Quantity    uint16 `json:"quantity"`     // Количество данного товара
-		Price       uint32 `json:"price"`        // Цена одного товара
-		WarehouseID int64  `json:"warehouse_id"` // ID склада с которого поедет товар
-	} `json:"items"` // Товары в корзине к оплате
-	DeliveryVariantID int64     `json:"delivery_variant_id"` // ID способа доставки
-	DelieveryDate     time.Time `json:"delivery_date"`       // Срок доставки
+	UserID int64      `json:"user"`
+	Items  []ItemInfo `json:"items"`
 }
 
 type CreateOrderResponse struct {
-	OrderUUID string `json:"order_uuid"` // UUID созданного заказа
+	OrderID int64 `json:"orderID"`
 }
 
 func (c *Controller) CreateOrderHandler(w http.ResponseWriter, r *http.Request) {
@@ -58,7 +57,7 @@ func (c *Controller) CreateOrderHandler(w http.ResponseWriter, r *http.Request) 
 
 	// 4. Prepare answer
 	resp := CreateOrderResponse{
-		OrderUUID: order.UUID.String(),
+		OrderID: int64(order.ID),
 	}
 
 	// 5. Encode answer & send response
@@ -70,16 +69,53 @@ func (c *Controller) CreateOrderHandler(w http.ResponseWriter, r *http.Request) 
 }
 
 func validateCreateOrderRequest(req *CreateOrderRequest) error {
-	/* your validation logic here */
+	if err := validateUserID(req.UserID); err != nil {
+		return fmt.Errorf("validateUserID: %w", err)
+	}
+
+	if err := validateItems(req.Items); err != nil {
+		return fmt.Errorf("validateItems: %w", err)
+	}
+
+	return nil
+}
+
+func validateItems(items []ItemInfo) error {
+	if len(items) <= 0 {
+		return errors.New("no items in order")
+	}
+
+	for _, item := range items {
+		if item.Count <= 0 {
+			return fmt.Errorf("item quantity for sku=%d <= 0", item.SKU)
+		}
+	}
+
+	return nil
+}
+
+func validateUserID(userID int64) error {
+	if userID <= 0 {
+		return fmt.Errorf("invalid userID: %d", userID)
+	}
 	return nil
 }
 
 func extractCreateOrderInfoFromCreateOrderRequest(req *CreateOrderRequest) usecase.CreateOrderInfo {
-	/* your mapping logic here */
-
 	info := usecase.CreateOrderInfo{
-		/* ... */
+		Items: itemInfoToDTOItemInfo(req.Items),
 	}
 
 	return info
+}
+
+func itemInfoToDTOItemInfo(items []ItemInfo) []usecase.ItemInfo {
+	dtoItems := make([]usecase.ItemInfo, len(items))
+	for _, item := range items {
+		dtoItems = append(dtoItems, usecase.ItemInfo{
+			SKU:   item.SKU,
+			Count: item.Count,
+		})
+	}
+	return dtoItems
 }
