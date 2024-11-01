@@ -4,7 +4,7 @@ import (
 	"context"
 	"sync"
 
-	"github.com/GO-route256/classroom-8/students/workshop-2/internal/model"
+	"github.com/just-a-developer-man/GO-route256/workshop-2/internal/model"
 )
 
 type Repository struct {

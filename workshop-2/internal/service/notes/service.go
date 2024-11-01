@@ -3,8 +3,8 @@ package notes
 import (
 	"context"
 
-	"github.com/GO-route256/classroom-8/students/workshop-2/internal/model"
-	"github.com/GO-route256/classroom-8/students/workshop-2/internal/repository/notes"
+	"github.com/just-a-developer-man/GO-route256/workshop-2/internal/model"
+	"github.com/just-a-developer-man/GO-route256/workshop-2/internal/repository/notes"
 )
 
 type Service struct {

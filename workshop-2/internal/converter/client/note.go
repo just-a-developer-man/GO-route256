@@ -1,8 +1,8 @@
 package client
 
 import (
-	"github.com/GO-route256/classroom-8/students/workshop-2/internal/model"
-	desc "github.com/GO-route256/classroom-8/students/workshop-2/pkg/api/notes/v1"
+	"github.com/just-a-developer-man/GO-route256/workshop-2/internal/model"
+	desc "github.com/just-a-developer-man/GO-route256/workshop-2/pkg/api/notes/v1"
 )
 
 func NoteToReq(n *model.Note) *desc.SaveNoteRequest {

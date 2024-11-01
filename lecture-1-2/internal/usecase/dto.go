@@ -1,7 +1,7 @@
 package usecase
 
 import (
-	"github.com/GO-route256/lecture-1-2/internal/models"
+	"github.com/just-a-developer-man/GO-route256/lecture-1-2/internal/models"
 )
 
 // CreateOrderInputInfo - DTO заказа (для создания заказа)

@@ -3,7 +3,7 @@ package usecase
 import (
 	"context"
 
-	"github.com/GO-route256/lecture-1-2/internal/models"
+	"github.com/just-a-developer-man/GO-route256/lecture-1-2/internal/models"
 )
 
 // interfaces.go: Декларируем бизнес функциональность

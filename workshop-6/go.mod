@@ -1,4 +1,4 @@
-module github.com/GO-route256/classroom-8/students/workshop-6
+module github.com/just-a-developer-man/GO-route256/workshop-6
 
 go 1.23
 

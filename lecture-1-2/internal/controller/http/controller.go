@@ -1,6 +1,6 @@
 package controller_http
 
-import "github.com/GO-route256/lecture-1-2/internal/usecase"
+import "github.com/just-a-developer-man/GO-route256/lecture-1-2/internal/usecase"
 
 type Usecases struct {
 	usecase.OrderManagementSystem // OMS interface

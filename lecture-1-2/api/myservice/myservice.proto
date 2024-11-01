@@ -2,6 +2,6 @@ syntax = "proto3";
 
 package github.com.GO-route256.classroom_8.students.lecture_1_2.api.myservice;
 
-option go_package = "github.com/GO-route256/lecture-1-2/pkg/api/myservice";
+option go_package = "github.com/just-a-developer-man/GO-route256/lecture-1-2/pkg/api/myservice";
 
 service Ods {}

@@ -5,11 +5,11 @@ import (
 	"net/http"
 	"os"
 
-	controller_http "github.com/GO-route256/lecture-1-2/internal/controller/http"
-	repository "github.com/GO-route256/lecture-1-2/internal/repository/postgres"
-	wms "github.com/GO-route256/lecture-1-2/internal/services/WMS"
-	oms "github.com/GO-route256/lecture-1-2/internal/usecase/OMS"
-	"github.com/GO-route256/lecture-1-2/pkg/middleware"
+	controller_http "github.com/just-a-developer-man/GO-route256/lecture-1-2/internal/controller/http"
+	repository "github.com/just-a-developer-man/GO-route256/lecture-1-2/internal/repository/postgres"
+	wms "github.com/just-a-developer-man/GO-route256/lecture-1-2/internal/services/WMS"
+	oms "github.com/just-a-developer-man/GO-route256/lecture-1-2/internal/usecase/OMS"
+	"github.com/just-a-developer-man/GO-route256/lecture-1-2/pkg/middleware"
 )
 
 func main() {

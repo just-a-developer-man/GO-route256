@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/Shopify/sarama"
-	"github.com/GO-route256/classroom-8/students/workshop-6/pkg/kafka"
+	"github.com/just-a-developer-man/GO-route256/workshop-6/pkg/kafka"
 )
 
 type Message struct {
