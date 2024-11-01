@@ -4,8 +4,8 @@ import (
 	"context"
 	"errors"
 
-	"github.com/GO-route256/classroom-8/students/lecture-1-2/internal/models"
-	oms "github.com/GO-route256/classroom-8/students/lecture-1-2/internal/usecase/OMS"
+	"github.com/GO-route256/lecture-1-2/internal/models"
+	oms "github.com/GO-route256/lecture-1-2/internal/usecase/OMS"
 )
 
 type omsRepository struct {

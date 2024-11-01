@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/GO-route256/classroom-8/students/lecture-1-2/internal/models"
-	"github.com/GO-route256/classroom-8/students/lecture-1-2/internal/usecase"
+	"github.com/GO-route256/lecture-1-2/internal/models"
+	"github.com/GO-route256/lecture-1-2/internal/usecase"
 )
 
 type CreateOrderRequest struct {
