@@ -6,10 +6,10 @@ import (
 	"os"
 
 	controller_http "github.com/just-a-developer-man/GO-route256/workshop-1/loms/internal/controller/http"
+	"github.com/just-a-developer-man/GO-route256/workshop-1/loms/internal/controller/http/middleware"
 	repository "github.com/just-a-developer-man/GO-route256/workshop-1/loms/internal/repository/postgres"
 	wms "github.com/just-a-developer-man/GO-route256/workshop-1/loms/internal/services/WMS"
 	oms "github.com/just-a-developer-man/GO-route256/workshop-1/loms/internal/usecase/OMS"
-	"github.com/just-a-developer-man/GO-route256/workshop-1/loms/pkg/middleware"
 )
 
 func main() {
@@ -34,7 +34,9 @@ func main() {
 	router := controller.NewRouter()
 
 	// Middleware layer
+	router = middleware.AddLoggingCtxMiddleware(router)
 	router = middleware.WithHTTPRecoverMiddleware(router)
+	router = middleware.LogHandlingTimeMiddleware(router)
 
 	// Run service
 	addr := os.Getenv("ADDR")
