@@ -26,6 +26,7 @@ type CreateOrderResponse struct {
 	OrderID int64 `json:"orderID"`
 }
 
+// CreateOrderHandler handles `order/create` request
 func (c *Controller) CreateOrderHandler(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 
