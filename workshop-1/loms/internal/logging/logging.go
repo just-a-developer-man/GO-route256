@@ -20,6 +20,9 @@ func (c *customLoggerMiddleware) Enabled(ctx context.Context, level slog.Level) 
 }
 
 func (c *customLoggerMiddleware) Handle(ctx context.Context, rec slog.Record) error {
+	if loggerCtx, ok := ctx.Value(logCtxKey).(loggerRequestContext); ok {
+		rec = handleRequestContext(loggerCtx, rec)
+	}
 	return c.next.Handle(ctx, rec)
 }
 
@@ -57,7 +60,7 @@ func WithLogRequest(ctx context.Context, method string, path string) context.Con
 	})
 }
 
-func WithLogUserID(ctx context.Context, userID int64) context.Context {
+func WithLogCreateOrder(ctx context.Context, userID int64) context.Context {
 	if c, ok := ctx.Value(logCtxKey).(loggerRequestContext); ok {
 		if c.orderCreateInfo != nil {
 			c.orderCreateInfo.userID = userID
@@ -69,4 +72,20 @@ func WithLogUserID(ctx context.Context, userID int64) context.Context {
 			userID: userID,
 		},
 	})
+}
+
+func handleRequestContext(logCtx loggerRequestContext, rec slog.Record) slog.Record {
+	rec.Add("method", logCtx.method)
+	rec.Add("path", logCtx.path)
+
+	if orderCtx := logCtx.orderCreateInfo; orderCtx != nil {
+		return handleCreateOrderContext(*orderCtx, rec)
+	}
+
+	return rec
+}
+
+func handleCreateOrderContext(orderCreateInfo orderCreateContext, rec slog.Record) slog.Record {
+	rec.Add("userID", orderCreateInfo.userID)
+	return rec
 }
