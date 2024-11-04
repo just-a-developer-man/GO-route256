@@ -85,7 +85,7 @@ func (c *Controller) CreateOrderHandler(w http.ResponseWriter, r *http.Request) 
 func validateCreateOrderRequest(req *CreateOrderRequest, funcs ...validateFunc) error {
 	for _, f := range funcs {
 		if err := f(req); err != nil {
-			return fmt.Errorf("%v: %w", f, err)
+			return fmt.Errorf("request validation: %w", err)
 		}
 	}
 
