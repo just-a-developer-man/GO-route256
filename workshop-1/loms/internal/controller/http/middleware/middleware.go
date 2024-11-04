@@ -55,6 +55,30 @@ func LogHandlingTimeAndStatusMiddlware(next http.Handler) http.Handler {
 	return http.HandlerFunc(fn)
 }
 
+func CheckMethodPostMiddleware(next http.HandlerFunc) http.HandlerFunc {
+	fn := func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodPost {
+			slog.ErrorContext(r.Context(), "inappropriate method for handler")
+			http.Error(w, "", http.StatusNotFound)
+			return
+		}
+		next.ServeHTTP(w, r)
+	}
+	return http.HandlerFunc(fn)
+}
+
+func CheckMethodGetMiddleware(next http.HandlerFunc) http.HandlerFunc {
+	fn := func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodGet {
+			slog.ErrorContext(r.Context(), "inappropriate method for handler")
+			http.Error(w, "", http.StatusNotFound)
+			return
+		}
+		next.ServeHTTP(w, r)
+	}
+	return http.HandlerFunc(fn)
+}
+
 type customResponseWriter struct {
 	http.ResponseWriter
 	statusCode int
