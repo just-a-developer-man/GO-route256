@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"log/slog"
 	"net/http"
 
 	"github.com/just-a-developer-man/GO-route256/workshop-1/loms/internal/models"
@@ -30,7 +31,10 @@ type CreateOrderResponse struct {
 func (c *Controller) CreateOrderHandler(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 
+	slog.InfoContext(ctx, "got create order request")
+
 	if r.Method != http.MethodPost {
+		slog.ErrorContext(ctx, "inappropriate method for order creation")
 		http.Error(w, "", http.StatusNotFound)
 		return
 	}
@@ -38,22 +42,28 @@ func (c *Controller) CreateOrderHandler(w http.ResponseWriter, r *http.Request) 
 	// 0. Decode request
 	var req CreateOrderRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+		slog.ErrorContext(ctx, "request body decoding failed", "err", err)
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 
+	slog.DebugContext(ctx, "decoded json request from body", "request", req)
+
 	// 1. Validation
 	if err := validateCreateOrderRequest(&req, validateUserID, validateItems); err != nil {
+		slog.ErrorContext(ctx, "request validation failed", "err", err)
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 
 	// 2. Transform delivery layer models to Domain/Usecase models
 	orderInfo := extractCreateOrderInfoFromCreateOrderRequest(&req)
+	slog.DebugContext(ctx, "extracted order info from request", "order info", orderInfo)
 
 	// 3. Call usecases
 	order, err := c.OrderManagementSystem.CreateOrder(ctx, models.UserID(req.UserID), orderInfo)
 	if err != nil {
+		slog.ErrorContext(ctx, "order creation in OMSystem failed", "err", err)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -65,6 +75,7 @@ func (c *Controller) CreateOrderHandler(w http.ResponseWriter, r *http.Request) 
 
 	// 5. Encode answer & send response
 	if err := json.NewEncoder(w).Encode(resp); err != nil {
+		slog.ErrorContext(ctx, "order creation response encoding failed", "err", err)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
