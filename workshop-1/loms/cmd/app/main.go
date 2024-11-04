@@ -2,17 +2,22 @@ package main
 
 import (
 	"log"
+	"log/slog"
 	"net/http"
 	"os"
 
 	controller_http "github.com/just-a-developer-man/GO-route256/workshop-1/loms/internal/controller/http"
 	"github.com/just-a-developer-man/GO-route256/workshop-1/loms/internal/controller/http/middleware"
+	"github.com/just-a-developer-man/GO-route256/workshop-1/loms/internal/logging"
 	repository "github.com/just-a-developer-man/GO-route256/workshop-1/loms/internal/repository/postgres"
 	wms "github.com/just-a-developer-man/GO-route256/workshop-1/loms/internal/services/WMS"
 	oms "github.com/just-a-developer-man/GO-route256/workshop-1/loms/internal/usecase/OMS"
 )
 
 func main() {
+	// Init logging
+	logging.InitLogger(logging.TextHandler, slog.LevelDebug, os.Stdout)
+
 	// Repository layer
 	omsRepo := repository.NewOMSRepostiory( /* ... */ )
 
@@ -36,7 +41,7 @@ func main() {
 	// Middleware layer
 	router = middleware.AddLoggingCtxMiddleware(router)
 	router = middleware.WithHTTPRecoverMiddleware(router)
-	router = middleware.LogHandlingTimeMiddleware(router)
+	router = middleware.LogHandlingTimeAndStatusMiddlware(router)
 
 	// Run service
 	addr := os.Getenv("ADDR")
