@@ -122,7 +122,7 @@ func TestWithLogUserID(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got := WithLogUserID(tt.args.ctx, tt.args.userID)
+			got := WithLogCreateOrder(tt.args.ctx, tt.args.userID)
 			if reqCtx, ok := got.Value(logCtxKey).(loggerRequestContext); ok {
 				assert.Equal(t, tt.want, reqCtx)
 			} else {
