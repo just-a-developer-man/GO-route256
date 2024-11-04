@@ -96,17 +96,6 @@ func TestController_CreateOrderHandler(t *testing.T) {
 			},
 			wantStatus: http.StatusInternalServerError,
 		},
-		{
-			name: "bad method",
-			args: args{
-				controller: NewController(Usecases{
-					OrderManagementSystem: nil,
-				}),
-				responseRecoder: httptest.NewRecorder(),
-				request:         createRequest(t, http.MethodGet, "/v1/order/create", goodOrderCreateRequest),
-			},
-			wantStatus: http.StatusNotFound,
-		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

@@ -7,11 +7,12 @@ import (
 	"log/slog"
 	"net/http"
 
+	"github.com/just-a-developer-man/GO-route256/workshop-1/loms/internal/logging"
 	"github.com/just-a-developer-man/GO-route256/workshop-1/loms/internal/models"
 	"github.com/just-a-developer-man/GO-route256/workshop-1/loms/internal/usecase"
 )
 
-type validateFunc func(*CreateOrderRequest) error
+type validateCreateOrderRequestFunc func(*CreateOrderRequest) error
 
 type ItemInfo struct {
 	SKU   uint32 `json:"sku"`
@@ -31,14 +32,6 @@ type CreateOrderResponse struct {
 func (c *Controller) CreateOrderHandler(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 
-	slog.InfoContext(ctx, "got create order request")
-
-	if r.Method != http.MethodPost {
-		slog.ErrorContext(ctx, "inappropriate method for order creation")
-		http.Error(w, "", http.StatusNotFound)
-		return
-	}
-
 	// 0. Decode request
 	var req CreateOrderRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
@@ -46,6 +39,8 @@ func (c *Controller) CreateOrderHandler(w http.ResponseWriter, r *http.Request) 
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
+
+	ctx = logging.WithLogCreateOrder(ctx, req.UserID)
 
 	slog.DebugContext(ctx, "decoded json request from body", "request", req)
 
@@ -61,7 +56,7 @@ func (c *Controller) CreateOrderHandler(w http.ResponseWriter, r *http.Request) 
 	slog.DebugContext(ctx, "extracted order info from request", "order info", orderInfo)
 
 	// 3. Call usecases
-	order, err := c.OrderManagementSystem.CreateOrder(ctx, models.UserID(req.UserID), orderInfo)
+	orderID, err := c.OrderManagementSystem.CreateOrder(ctx, models.UserID(req.UserID), orderInfo)
 	if err != nil {
 		slog.ErrorContext(ctx, "order creation in OMSystem failed", "err", err)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -70,7 +65,7 @@ func (c *Controller) CreateOrderHandler(w http.ResponseWriter, r *http.Request) 
 
 	// 4. Prepare answer
 	resp := CreateOrderResponse{
-		OrderID: int64(order.ID),
+		OrderID: int64(orderID),
 	}
 
 	// 5. Encode answer & send response
@@ -82,7 +77,7 @@ func (c *Controller) CreateOrderHandler(w http.ResponseWriter, r *http.Request) 
 	w.WriteHeader(http.StatusCreated)
 }
 
-func validateCreateOrderRequest(req *CreateOrderRequest, funcs ...validateFunc) error {
+func validateCreateOrderRequest(req *CreateOrderRequest, funcs ...validateCreateOrderRequestFunc) error {
 	for _, f := range funcs {
 		if err := f(req); err != nil {
 			return fmt.Errorf("request validation: %w", err)
