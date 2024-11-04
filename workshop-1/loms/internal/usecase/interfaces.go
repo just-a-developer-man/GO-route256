@@ -9,6 +9,7 @@ import (
 // interfaces.go: Декларируем бизнес функциональность
 
 type OrderManagementSystem interface {
-	CreateOrder(ctx context.Context, userID models.UserID, info CreateOrderInfo) (models.Order, error)
+	CreateOrder(ctx context.Context, userID models.UserID, info CreateOrderInfo) (models.OrderID, error)
+	OrderByID(ctx context.Context, orderID models.OrderID) (models.Order, error)
 	/* ... */
 }
