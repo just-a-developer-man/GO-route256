@@ -4,6 +4,8 @@ import (
 	"context"
 
 	"github.com/google/uuid"
+	controller_http "github.com/just-a-developer-man/GO-route256/workshop-1/loms/internal/controller/http"
+	"github.com/just-a-developer-man/GO-route256/workshop-1/loms/internal/dto"
 	"github.com/just-a-developer-man/GO-route256/workshop-1/loms/internal/models"
 	"github.com/just-a-developer-man/GO-route256/workshop-1/loms/internal/usecase"
 )
@@ -35,7 +37,7 @@ type omsUsecase struct {
 }
 
 // check that we implement usecase contarct correctly
-var _ usecase.OrderManagementSystem = (*omsUsecase)(nil)
+var _ controller_http.OrderManagementSystem = (*omsUsecase)(nil)
 
 // NewOMSUsecase - возвращаем реализацию usecase.OrderManagementSystem
 func NewOMSUsecase(d Deps) *omsUsecase {
@@ -45,27 +47,30 @@ func NewOMSUsecase(d Deps) *omsUsecase {
 }
 
 // CreateOrder - создание заказа
-func (oms *omsUsecase) CreateOrder(ctx context.Context, userID models.UserID, info usecase.CreateOrderInfo) (models.Order, error) {
+func (oms *omsUsecase) CreateOrder(ctx context.Context, userID models.UserID, info dto.CreateOrderInfo) (models.OrderID, error) {
 	// Резервируем стоки на складах
 	if err := oms.WarehouseManagementSystem.ReserveStocks(ctx, userID, info.Items); err != nil {
-		return models.Order{}, usecase.ErrReserveStocks
+		return 0, usecase.ErrReserveStocks
 	}
 
 	// Формируем запись о заказе
 	var (
 		orderUUID = uuid.New()
 		order     = models.Order{
-			UUID:              orderUUID,
-			UserID:            userID,
-			Items:             info.Items,
-			DeliveryOrderInfo: info.DeliveryOrderInfo,
+			ID:     models.OrderID(orderUUID.ID()),
+			UserID: userID,
+			Items:  info.Items,
 		}
 	)
 
 	// Создаем заказ в БД
 	if err := oms.OMSRepository.CreateOrder(ctx, order); err != nil {
-		return models.Order{}, usecase.ErrCreateOrder
+		return 0, usecase.ErrCreateOrder
 	}
 
-	return order, nil
+	return order.ID, nil
+}
+
+func (omsusecase *omsUsecase) OrderByID(ctx context.Context, orderID models.OrderID) (dto.OrderInfo, error) {
+	panic("not implemented") // TODO: Implement
 }
