@@ -7,16 +7,16 @@ import (
 	"log/slog"
 	"net/http"
 
+	"github.com/just-a-developer-man/GO-route256/workshop-1/loms/internal/dto"
 	"github.com/just-a-developer-man/GO-route256/workshop-1/loms/internal/logging"
 	"github.com/just-a-developer-man/GO-route256/workshop-1/loms/internal/models"
-	"github.com/just-a-developer-man/GO-route256/workshop-1/loms/internal/usecase"
 )
 
 type validateCreateOrderRequestFunc func(*CreateOrderRequest) error
 
 type ItemInfo struct {
-	SKU   uint32 `json:"sku"`
-	Count uint16 `json:"count"`
+	SKU      uint32 `json:"sku"`
+	Quantity uint16 `json:"count"`
 }
 
 type CreateOrderRequest struct {
@@ -36,7 +36,7 @@ func (c *Controller) CreateOrderHandler(w http.ResponseWriter, r *http.Request) 
 	var req CreateOrderRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		slog.ErrorContext(ctx, "request body decoding failed", "err", err)
-		http.Error(w, err.Error(), http.StatusBadRequest)
+		http.Error(w, "", http.StatusBadRequest)
 		return
 	}
 
@@ -47,19 +47,19 @@ func (c *Controller) CreateOrderHandler(w http.ResponseWriter, r *http.Request) 
 	// 1. Validation
 	if err := validateCreateOrderRequest(&req, validateUserID, validateItems); err != nil {
 		slog.ErrorContext(ctx, "request validation failed", "err", err)
-		http.Error(w, err.Error(), http.StatusBadRequest)
+		http.Error(w, "", http.StatusBadRequest)
 		return
 	}
 
 	// 2. Transform delivery layer models to Domain/Usecase models
-	orderInfo := extractCreateOrderInfoFromCreateOrderRequest(&req)
+	orderInfo := extractOrderInfo(&req)
 	slog.DebugContext(ctx, "extracted order info from request", "order info", orderInfo)
 
 	// 3. Call usecases
 	orderID, err := c.OrderManagementSystem.CreateOrder(ctx, models.UserID(req.UserID), orderInfo)
 	if err != nil {
 		slog.ErrorContext(ctx, "order creation in OMSystem failed", "err", err)
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		http.Error(w, "", http.StatusInternalServerError)
 		return
 	}
 
@@ -71,7 +71,7 @@ func (c *Controller) CreateOrderHandler(w http.ResponseWriter, r *http.Request) 
 	// 5. Encode answer & send response
 	if err := json.NewEncoder(w).Encode(resp); err != nil {
 		slog.ErrorContext(ctx, "order creation response encoding failed", "err", err)
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		http.Error(w, "", http.StatusInternalServerError)
 		return
 	}
 	w.WriteHeader(http.StatusCreated)
@@ -94,7 +94,7 @@ func validateItems(req *CreateOrderRequest) error {
 	}
 
 	for _, item := range items {
-		if item.Count <= 0 {
+		if item.Quantity <= 0 {
 			return fmt.Errorf("item quantity for sku=%d <= 0", item.SKU)
 		}
 	}
@@ -110,21 +110,21 @@ func validateUserID(req *CreateOrderRequest) error {
 	return nil
 }
 
-func extractCreateOrderInfoFromCreateOrderRequest(req *CreateOrderRequest) usecase.CreateOrderInfo {
-	info := usecase.CreateOrderInfo{
-		Items: itemInfoToDTOItemInfo(req.Items),
+func extractOrderInfo(req *CreateOrderRequest) dto.CreateOrderInfo {
+	info := dto.CreateOrderInfo{
+		Items: itemInfoToItemOrderInfo(req.Items),
 	}
 
 	return info
 }
 
-func itemInfoToDTOItemInfo(items []ItemInfo) []usecase.ItemInfo {
-	dtoItems := make([]usecase.ItemInfo, len(items))
+func itemInfoToItemOrderInfo(items []ItemInfo) []models.ItemOrderInfo {
+	modelItems := make([]models.ItemOrderInfo, 0, len(items))
 	for _, item := range items {
-		dtoItems = append(dtoItems, usecase.ItemInfo{
-			SKU:   item.SKU,
-			Count: item.Count,
+		modelItems = append(modelItems, models.ItemOrderInfo{
+			SKU:      item.SKU,
+			Quantity: item.Quantity,
 		})
 	}
-	return dtoItems
+	return modelItems
 }
