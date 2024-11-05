@@ -1,5 +1,15 @@
 package models
 
+type OrderStatus string
+
+const (
+	StatusNew             OrderStatus = "new"
+	StatusAwaitingPayment OrderStatus = "awaiting payment"
+	StatusFailed          OrderStatus = "failed"
+	StatusPayed           OrderStatus = "payed"
+	StatusCancelled       OrderStatus = "cancelled"
+)
+
 // Order - заказ
 type Order struct {
 	ID     OrderID         // ID заказа
