@@ -84,9 +84,9 @@ func validateOrderID(req OrderInfoRequest) error {
 }
 
 func orderInfoToResponse(info dto.OrderInfo) OrderInfoResponse {
-	items := make([]ItemInfo, 0, len(info.Items))
+	items := make([]ItemInfo, 0, len(info.Order.Items))
 
-	for _, item := range info.Items {
+	for _, item := range info.Order.Items {
 		items = append(items, ItemInfo{
 			SKU:      item.SKU,
 			Quantity: item.Quantity,
@@ -94,8 +94,8 @@ func orderInfoToResponse(info dto.OrderInfo) OrderInfoResponse {
 	}
 
 	return OrderInfoResponse{
-		Status: orderStatus(info.OrderStatus),
-		UserID: int64(info.UserID),
+		Status: orderStatus(info.Status),
+		UserID: int64(info.Order.UserID),
 		Items:  items,
 	}
 }

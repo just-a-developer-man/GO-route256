@@ -9,6 +9,6 @@ type CreateOrderInfo struct {
 
 // OrderInfo - DTO for trnasferring information about order
 type OrderInfo struct {
-	models.Order
-	models.OrderStatus
+	Order  models.Order
+	Status models.OrderStatus
 }
