@@ -13,6 +13,7 @@ func (c *Controller) NewRouter() http.Handler {
 
 	// Note: You can add here custom middleware too
 	mux.HandleFunc("/v1/order/create", middleware.CheckMethodPostMiddleware(c.CreateOrderHandler))
+	mux.HandleFunc("/v1/order/info", middleware.CheckMethodGetMiddleware(c.OrderInfoHandler))
 
 	return mux
 }
