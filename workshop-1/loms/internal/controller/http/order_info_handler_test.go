@@ -2,10 +2,11 @@ package controller_http
 
 import (
 	"net/http"
-	"reflect"
 	"testing"
 
 	"github.com/just-a-developer-man/GO-route256/workshop-1/loms/internal/dto"
+	"github.com/just-a-developer-man/GO-route256/workshop-1/loms/internal/models"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestController_OrderInfoHandler(t *testing.T) {
@@ -83,13 +84,48 @@ func Test_orderInfoToResponse(t *testing.T) {
 		args args
 		want OrderInfoResponse
 	}{
-		// TODO: Add test cases.
+		{
+			name: "Test 1",
+			args: args{
+
+				info: dto.OrderInfo{
+					Order: models.Order{
+						ID:     models.OrderID(1),
+						UserID: models.UserID(1),
+						Items: []models.ItemOrderInfo{
+							{
+								SKU:      1,
+								Quantity: 1,
+							},
+							{
+								SKU:      2,
+								Quantity: 1,
+							},
+						},
+					},
+					Status: models.StatusAwaitingPayment,
+				},
+			},
+			want: OrderInfoResponse{
+
+				UserID: 1,
+				Status: statusAwaitingPayment,
+				Items: []ItemInfo{
+					{
+						SKU:      1,
+						Quantity: 1,
+					},
+					{
+						SKU:      2,
+						Quantity: 1,
+					},
+				},
+			},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := orderInfoToResponse(tt.args.info); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("orderInfoToResponse() = %v, want %v", got, tt.want)
-			}
+			assert.Equal(t, tt.want, orderInfoToResponse(tt.args.info))
 		})
 	}
 }
